@@ -12,7 +12,7 @@ class Account {
   }
 
   withdraw(value) {
-    if (value > this.balance()) {
+    if (value > Number(this.balance())) {
       return "Insufficient funds";
     } else {
       const transaction = new Transaction(value, 'debit');
@@ -28,13 +28,13 @@ class Account {
       } else {
         return -1 * transaction.value;
       }
-    }).reduce((total, value) => total + value, this.startBalance)
+    }).reduce((total, value) => total + value, this.startBalance).toFixed(2)
   }
 
   statement(transaction) {
     const rows = ["date || credit || debit || balance"];
     this.transactionHistory.forEach((transaction, index) => {
-      rows.push(`${transaction.date} || ${transaction.type === 'credit' ? transaction.value : '    '} || ${transaction.type === 'debit' ? transaction.value : '    '} || ${this.balance(index)}`)
+      rows.push(`${transaction.date} || ${transaction.type === 'credit' ? transaction.value.toFixed(2) : '    '} || ${transaction.type === 'debit' ? transaction.value.toFixed(2) : '    '} || ${this.balance(index)}`)
     });
     return rows.join(`\n`);
   }

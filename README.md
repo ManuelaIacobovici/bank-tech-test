@@ -59,3 +59,17 @@ I need to see a printed bank statement.
 As a client,
 So I can review my bank statement efficiently,
 Transactions should be listed by date, with the newest first.
+
+
+## How to:
+To run the program in node you can use the following:
+
+const Account = require('./app/src/account');
+const account = new Account();
+account.deposit(1000);
+account.deposit(2000);
+account.withdraw(500);
+account.balance();
+account.statement();
+
+## Tests are checked using jest.
