@@ -30,6 +30,14 @@ class Account {
       }
     }).reduce((total, value) => total + value, this.startBalance)
   }
+
+  statement(transaction) {
+    const rows = ["date || credit || debit || balance"];
+    this.transactionHistory.forEach((transaction, index) => {
+      rows.push(`${transaction.date} || ${transaction.type === 'credit' ? transaction.value : '    '} || ${transaction.type === 'debit' ? transaction.value : '    '} || ${this.balance(index)}`)
+    });
+    return rows.join(`\n`);
+  }
 }
 
 module.exports = Account;

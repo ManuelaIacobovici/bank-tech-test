@@ -25,4 +25,11 @@ describe('Account', () => {
     account.withdraw(250);
     expect(account.balance()).toEqual(250);
   })
+
+  it('has a date on the transaction', () => {
+    const account = new Account();
+    account.deposit(500);
+    const date = new Date().toLocaleDateString('en-GB');
+    expect(account.statement()).toMatch(new RegExp(date));
+  })
 })
