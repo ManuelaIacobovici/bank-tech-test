@@ -18,4 +18,11 @@ describe('Account', () => {
     const account = new Account();
     expect(account.withdraw(250)).toBe("Insufficient funds");
   })
+
+  it('lets you withdraw a value', () => {
+    const account = new Account();
+    account.deposit(500);
+    account.withdraw(250);
+    expect(account.balance()).toEqual(250);
+  })
 })
