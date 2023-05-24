@@ -11,6 +11,15 @@ class Account {
     this.transactionHistory.push(transaction);
   }
 
+  withdraw(value) {
+    if (value > this.balance()) {
+      return "Insufficient funds";
+    } else {
+      const transaction = new Transaction(value, 'debit');
+      this.transactionHistory.push(transaction);
+    }
+  }
+
   balance(length) {
     if (length === undefined) length = this.transactionHistory.length
     return this.transactionHistory.slice(0, length + 1).map((transaction) => {
