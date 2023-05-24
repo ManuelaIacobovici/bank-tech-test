@@ -6,6 +6,11 @@ class Account {
     this.transactionHistory = [];
   }
 
+  deposit(value) {
+    const transaction = new Transaction(value, 'credit')
+    this.transactionHistory.push(transaction);
+  }
+
   balance(length) {
     if (length === undefined) length = this.transactionHistory.length
     return this.transactionHistory.slice(0, length + 1).map((transaction) => {
